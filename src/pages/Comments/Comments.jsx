@@ -597,7 +597,7 @@ const Comments = () => {
             <Form.Group className="mb-4">
               <div className="glass-card p-3 mb-2" style={{ borderRadius: '12px' }}>
                 <HCaptcha
-                  sitekey={process.env.REACT_APP_HCAPTCHA_SITE_KEY}
+                  sitekey={window.env?.REACT_APP_HCAPTCHA_SITE_KEY || process.env.REACT_APP_HCAPTCHA_SITE_KEY || "10000000-ffff-ffff-ffff-000000000001"}
                   onVerify={handleCaptchaVerify}
                   onExpire={handleCaptchaExpire}
                   onError={handleCaptchaError}

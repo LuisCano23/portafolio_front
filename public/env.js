@@ -1,0 +1,3 @@
+window.env = {
+  REACT_APP_HCAPTCHA_SITE_KEY: 'a1e2b528-4728-4260-9ae8-0a9ea376e408'
+};
