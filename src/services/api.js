@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // ✅ Configuración CORRECTA para Vercel + entorno local
 const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? process.env.REACT_APP_API_URL || 'https://tu-backend-en-vercel.vercel.app'
+  ? process.env.REACT_APP_API_URL || 'https://portafolio-back-lemon.vercel.app'
   : 'http://localhost:5000';
 
 
