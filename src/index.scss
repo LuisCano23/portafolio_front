@@ -1,0 +1,41 @@
+
+$primary: #2c3e50;
+$secondary: #3498db;
+$success: #27ae60;
+$dark: #1a252f;
+$light: #ecf0f1;
+
+
+@import 'bootstrap/scss/bootstrap';
+
+// Estilos globales
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: $light;
+  color: $dark;
+  padding-top: 60px; 
+}
+
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $secondary;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: darken($secondary, 10%);
+}

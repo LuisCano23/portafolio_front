@@ -1,0 +1,553 @@
+/* ============================================
+   PALETA DE COLORES FRUTIGER AERO
+   ============================================ */
+
+/* Variables CSS para Frutiger Aero */
+:root {
+  /* Colores Base */
+  --white: #ffffff;
+  --off-white: #f8fdfc;
+  
+  /* Gama de Verdes (principal) */
+  --mint: #a8e6cf;
+  --aqua-green: #4ecdc4;
+  --teal: #44a08d;
+  --emerald: #0d9488;
+  --jade: #10b981;
+  --seafoam: #99f6e4;
+  
+  /* Gama de Azules (secundario) */
+  --sky-blue: #87ceeb;
+  --baby-blue: #a7d8ff;
+  --crystal-blue: #b3e5fc;
+  --pool-blue: #81d4fa;
+  --ocean-blue: #4fc3f7;
+  
+  /* Transparencias y Efectos */
+  --glass-light: rgba(255, 255, 255, 0.85);
+  --glass-medium: rgba(255, 255, 255, 0.7);
+  --glass-dark: rgba(255, 255, 255, 0.4);
+  --frost-white: rgba(255, 255, 255, 0.9);
+  
+  /* Sombras y Brillos */
+  --shadow-soft: 0 4px 20px rgba(77, 255, 208, 0.15);
+  --shadow-medium: 0 8px 30px rgba(77, 255, 208, 0.25);
+  --shadow-strong: 0 12px 40px rgba(77, 255, 208, 0.35);
+  --glow-green: 0 0 20px rgba(77, 255, 208, 0.5);
+  --glow-blue: 0 0 20px rgba(135, 206, 235, 0.5);
+  
+  /* Gradientes Frutiger Aero */
+  --gradient-aqua: linear-gradient(135deg, var(--mint) 0%, var(--aqua-green) 50%, var(--sky-blue) 100%);
+  --gradient-ocean: linear-gradient(135deg, var(--baby-blue) 0%, var(--pool-blue) 50%, var(--ocean-blue) 100%);
+  --gradient-emerald: linear-gradient(135deg, var(--seafoam) 0%, var(--jade) 50%, var(--emerald) 100%);
+  --gradient-glass: linear-gradient(135deg, 
+    rgba(168, 230, 207, 0.9) 0%, 
+    rgba(135, 206, 235, 0.8) 50%, 
+    rgba(255, 255, 255, 0.7) 100%
+  );
+}
+
+/* ============================================
+   ESTILOS GLOBALES FRUTIGER AERO
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Calibri, 'Trebuchet MS', sans-serif;
+  background: var(--gradient-aqua);
+  background-attachment: fixed;
+  color: #1a535c;
+  min-height: 100vh;
+  padding-top: 60px; /* Para el header fijo */
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Efecto de burbujas en el fondo (típico de Frutiger Aero) */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(168, 230, 207, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(135, 206, 235, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 30%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ============================================
+   EFECTOS GLASSMORPHISM (Vidrio Esmerilado)
+   ============================================ */
+
+.glass-card {
+  background: var(--glass-light);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid var(--glass-dark);
+  border-radius: 20px;
+  box-shadow: 
+    var(--shadow-soft),
+    inset 0 1px 0 var(--frost-white),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    var(--shadow-medium),
+    inset 0 1px 0 var(--frost-white),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.glass-panel {
+  background: var(--glass-medium);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 
+    var(--shadow-soft),
+    inset 0 2px 4px rgba(255, 255, 255, 0.6),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   BOTONES FRUTIGER AERO
+   ============================================ */
+
+.btn-frutiger {
+  background: var(--gradient-emerald);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  padding: 14px 28px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 4px 15px rgba(16, 185, 129, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-frutiger::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.btn-frutiger:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 6px 20px rgba(16, 185, 129, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.btn-frutiger:hover::before {
+  left: 100%;
+}
+
+.btn-frutiger-secondary {
+  background: var(--gradient-ocean);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  padding: 12px 24px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 4px 15px rgba(79, 195, 247, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-frutiger-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 20px rgba(79, 195, 247, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* ============================================
+   SCROLLBAR PERSONALIZADA
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--mint);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-emerald);
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gradient-aqua);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   ANIMACIONES Y TRANSICIONES
+   ============================================ */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* ============================================
+   TIPOGRAFÍA Y ENLACES
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: var(--emerald);
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+a {
+  color: var(--teal);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+a:hover {
+  color: var(--emerald);
+  text-shadow: 0 0 10px rgba(77, 255, 208, 0.5);
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-emerald);
+  transition: width 0.3s ease;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   UTILIDADES ADICIONALES
+   ============================================ */
+
+.text-gradient {
+  background: var(--gradient-emerald);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+
+.border-glow {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5),
+              0 0 20px rgba(77, 255, 208, 0.3);
+}
+
+.icon-3d {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  transition: all 0.3s ease;
+}
+
+.icon-3d:hover {
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+  transform: scale(1.1);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .glass-card {
+    border-radius: 16px;
+  }
+  
+  .btn-frutiger {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================================
+   ESTILOS ESPECÍFICOS PARA CARRUSEL
+   ============================================ */
+
+/* Efectos para los puntos de navegación */
+.active-dot {
+  box-shadow: 0 0 10px rgba(77, 255, 208, 0.5);
+}
+
+.inactive-dot:hover {
+  transform: scale(1.2);
+  background: rgba(168, 230, 207, 0.5) !important;
+}
+
+/* Miniaturas activas */
+.active-thumbnail {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(77, 255, 208, 0.25) !important;
+}
+
+/* Efectos hover para tarjetas */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-pointer:hover {
+  transform: translateY(-3px);
+}
+
+/* Transiciones suaves para el carrusel */
+.carousel-transition {
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Overlay para el fondo del carrusel */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Mejoras para texto en glass cards */
+.glass-card p,
+.glass-card h1,
+.glass-card h2,
+.glass-card h3,
+.glass-card h4,
+.glass-card h5,
+.glass-card h6 {
+  position: relative;
+  z-index: 1;
+}
+
+/* Animación para cambio de slides */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in {
+  animation: slideIn 0.6s ease-out;
+}
+
+/* Efecto de brillo en botones del carrusel */
+.carousel-control-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-control-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.carousel-control-btn:hover::after {
+  left: 100%;
+}
+
+/* ============================================
+   ESTILOS ESPECÍFICOS PARA TRAJECTORY
+   ============================================ */
+
+/* Mejoras responsivas para las cards */
+@media (max-width: 768px) {
+  .timeline-card {
+    margin-left: 48px !important;
+    width: calc(100% - 60px) !important;
+  }
+  
+  .timeline-point {
+    left: 24px !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
+/* Texto responsivo */
+.responsive-text {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.responsive-heading {
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
+}
+
+/* Línea de tiempo responsiva */
+.timeline-line-mobile {
+  display: block;
+}
+
+@media (min-width: 992px) {
+  .timeline-line-mobile {
+    display: none;
+  }
+}
+
+/* Ajustes de espaciado para móviles */
+@media (max-width: 576px) {
+  .glass-card {
+    border-radius: 12px !important;
+  }
+  
+  .timeline-event {
+    margin-bottom: 2rem !important;
+  }
+}
+
+/* Prevenir desbordamiento de texto */
+.text-overflow-prevent {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* ============================================
+   MEDIA QUERIES ESPECÍFICAS
+   ============================================ */
+
+/* Pantallas extra pequeñas (móviles) */
+@media (max-width: 480px) {
+  .trajectory-header h1 {
+    font-size: 1.75rem !important;
+  }
+  
+  .trajectory-header p {
+    font-size: 1rem !important;
+  }
+  
+  .timeline-card h3 {
+    font-size: 1.1rem !important;
+  }
+  
+  .timeline-card h5 {
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Pantallas pequeñas (tablets vertical) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .trajectory-header h1 {
+    font-size: 2rem !important;
+  }
+  
+  .timeline-card h3 {
+    font-size: 1.3rem !important;
+  }
+}
+
+/* Pantallas medianas (tablets horizontal) */
+@media (min-width: 769px) and (max-width: 991px) {
+  .timeline-card {
+    max-width: 85% !important;
+  }
+}
+
+/* ============================================
+   UTILIDADES ADICIONALES
+   ============================================ */
+
+/* Forzar line breaks en textos largos */
+.break-long-words {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Scroll suave para expansión de contenido */
+.smooth-expand {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Responsive shadow */
+.responsive-shadow {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+@media (min-width: 768px) {
+  .responsive-shadow {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+}
