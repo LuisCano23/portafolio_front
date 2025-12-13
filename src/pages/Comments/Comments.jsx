@@ -34,7 +34,7 @@ const Comments = () => {
 
   const commentsPerPage = 6;
   const API_URL = process.env.NODE_ENV === 'production' 
-  ? process.env.REACT_APP_API_URL || 'https://tu-backend-en-vercel.vercel.app'
+  ? process.env.REACT_APP_API_URL || 'https://portafolio-back-lemon.vercel.app'
   : 'http://localhost:5000';
 
   // Cargar comentarios del backend
