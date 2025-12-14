@@ -238,7 +238,6 @@ const Sidebar = ({ isOpen, closeSidebar }) => {
             {isOpen && (
               <div className="mt-2">
                 <h5 className="fw-bold mb-1 text-gradient" style={{ fontSize: '1.1rem' }}>Menú de Navegación</h5>
-                <small className="text-muted">Frutiger Aero Portfolio</small>
               </div>
             )}
           </div>
