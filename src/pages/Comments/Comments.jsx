@@ -8,7 +8,7 @@ import {
   FaArrowRight, FaPaperPlane, FaExclamationTriangle,
   FaLeaf, FaWater, FaTimes, FaCheck
 } from 'react-icons/fa';
-import HCaptcha from '@hcaptcha/react-hcaptcha';
+// import HCaptcha from '@hcaptcha/react-hcaptcha'; // Temporalmente desactivado
 import axios from 'axios';
 
 const Comments = () => {
@@ -29,8 +29,8 @@ const Comments = () => {
   const [formErrors, setFormErrors] = useState({});
   const [formSuccess, setFormSuccess] = useState('');
   const [formSubmitting, setFormSubmitting] = useState(false);
-  const [captchaToken, setCaptchaToken] = useState('');
-  const [captchaError, setCaptchaError] = useState('');
+  // const [captchaToken, setCaptchaToken] = useState(''); // Temporalmente desactivado
+  // const [captchaError, setCaptchaError] = useState(''); // Temporalmente desactivado
 
   const commentsPerPage = 6;
   const API_URL = process.env.NODE_ENV === 'production' 
@@ -80,7 +80,8 @@ const Comments = () => {
     }
   };
 
-  // Manejar el captcha
+  // Manejar el captcha (TEMPORALMENTE DESACTIVADO)
+  /*
   const handleCaptchaVerify = (token) => {
     setCaptchaToken(token);
     setCaptchaError('');
@@ -95,6 +96,7 @@ const Comments = () => {
     console.error('Captcha Error:', err);
     setCaptchaError('Error con el captcha. Intenta de nuevo.');
   };
+  */
 
   // Validar formulario
   const validateForm = () => {
@@ -114,9 +116,10 @@ const Comments = () => {
       errors.comentario = 'El comentario no puede exceder 1000 caracteres';
     }
     
-    if (!captchaToken) {
-      setCaptchaError('Por favor, completa la verificación captcha');
-    }
+    // TEMPORALMENTE DESACTIVADO
+    // if (!captchaToken) {
+    //   setCaptchaError('Por favor, completa la verificación captcha');
+    // }
     
     return errors;
   };
@@ -127,7 +130,7 @@ const Comments = () => {
     
     setFormErrors({});
     setFormSuccess('');
-    setCaptchaError('');
+    // setCaptchaError(''); // Temporalmente desactivado
     
     const errors = validateForm();
     
@@ -140,8 +143,8 @@ const Comments = () => {
     
     try {
       const payload = {
-        ...formData,
-        captchaToken
+        ...formData
+        // captchaToken // Temporalmente desactivado
       };
       
       const response = await axios.post(`${API_URL}/api/comments`, payload);
@@ -155,7 +158,7 @@ const Comments = () => {
           comentario: ''
         });
         
-        setCaptchaToken('');
+        // setCaptchaToken(''); // Temporalmente desactivado
         
         // Recargar comentarios después de 2 segundos
         setTimeout(() => {
@@ -201,7 +204,7 @@ const Comments = () => {
   const handleCloseModal = () => {
     setShowModal(false);
     setFormData({ nombre: '', comentario: '' });
-    setCaptchaToken('');
+    // setCaptchaToken(''); // Temporalmente desactivado
     setFormErrors({});
     setFormSuccess('');
   };
@@ -593,25 +596,16 @@ const Comments = () => {
               </Form.Text>
             </Form.Group>
 
-            {/* Captcha - Misma clave de prueba que en References.jsx */}
-            <Form.Group className="mb-4">
-              <div className="glass-card p-3 mb-2" style={{ borderRadius: '12px' }}>
-                <HCaptcha
-                  sitekey={window.env?.REACT_APP_HCAPTCHA_SITE_KEY || process.env.REACT_APP_HCAPTCHA_SITE_KEY || "10000000-ffff-ffff-ffff-000000000001"}
-                  onVerify={handleCaptchaVerify}
-                  onExpire={handleCaptchaExpire}
-                  onError={handleCaptchaError}
-                />
+            {/* Captcha - TEMPORALMENTE DESACTIVADO */}
+            <div className="mb-4 p-3 glass-card" style={{ borderRadius: '12px', backgroundColor: 'rgba(168, 230, 207, 0.2)' }}>
+              <div className="text-center">
+                <FaCheck className="text-success mb-2" size={24} />
+                <p className="mb-0" style={{ color: 'var(--teal)' }}>
+                  <strong>Verificación desactivada temporalmente</strong><br/>
+                  <small>Para pruebas. Reactivar en producción.</small>
+                </p>
               </div>
-              {captchaError && (
-                <Alert variant="danger" className="py-2">
-                  {captchaError}
-                </Alert>
-              )}
-              <Form.Text className="text-muted">
-                Esta verificación ayuda a prevenir spam
-              </Form.Text>
-            </Form.Group>
+            </div>
 
             <div className="d-flex justify-content-between mt-4">
               <Button

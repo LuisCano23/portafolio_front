@@ -23,7 +23,7 @@ import {
   FaLock,
   FaCheck
 } from 'react-icons/fa';
-import HCaptcha from '@hcaptcha/react-hcaptcha';
+// import HCaptcha from '@hcaptcha/react-hcaptcha'; // Temporalmente desactivado
 import { referenciasApi } from '../../services/api';
 
 const References = () => {
@@ -45,11 +45,11 @@ const References = () => {
   const [formErrors, setFormErrors] = useState({});
   const [formSuccess, setFormSuccess] = useState('');
   const [formSubmitting, setFormSubmitting] = useState(false);
-  const [captchaToken, setCaptchaToken] = useState('');
-  const [captchaError, setCaptchaError] = useState('');
+  // const [captchaToken, setCaptchaToken] = useState(''); // Temporalmente desactivado
+  // const [captchaError, setCaptchaError] = useState(''); // Temporalmente desactivado
   
   const autoPlayRef = useRef();
-  const captchaRef = useRef();
+  // const captchaRef = useRef(); // Temporalmente desactivado
   const intervalTime = 5000;
 
   // Cargar referencias del backend
@@ -132,8 +132,8 @@ const References = () => {
     setShowModal(true);
     setFormErrors({});
     setFormSuccess('');
-    setCaptchaToken('');
-    setCaptchaError('');
+    // setCaptchaToken(''); // Temporalmente desactivado
+    // setCaptchaError(''); // Temporalmente desactivado
   };
 
   const handleCloseModal = () => {
@@ -144,10 +144,10 @@ const References = () => {
       correo: '',
       carta: ''
     });
-    setCaptchaToken('');
-    if (captchaRef.current) {
-      captchaRef.current.resetCaptcha();
-    }
+    // setCaptchaToken(''); // Temporalmente desactivado
+    // if (captchaRef.current) { // Temporalmente desactivado
+    //   captchaRef.current.resetCaptcha();
+    // }
   };
 
   const handleInputChange = (e) => {
@@ -166,6 +166,8 @@ const References = () => {
     }
   };
 
+  // Manejar el captcha (TEMPORALMENTE DESACTIVADO)
+  /*
   const handleCaptchaVerify = (token) => {
     setCaptchaToken(token);
     setCaptchaError('');
@@ -180,6 +182,7 @@ const References = () => {
     console.error('Captcha Error:', err);
     setCaptchaError('Error con la verificación. Intenta de nuevo.');
   };
+  */
 
   const validateForm = () => {
     const errors = {};
@@ -208,9 +211,10 @@ const References = () => {
       errors.carta = 'La carta no puede exceder 1000 caracteres';
     }
     
-    if (!captchaToken) {
-      setCaptchaError('Por favor, completa la verificación captcha');
-    }
+    // TEMPORALMENTE DESACTIVADO
+    // if (!captchaToken) {
+    //   setCaptchaError('Por favor, completa la verificación captcha');
+    // }
     
     return errors;
   };
@@ -220,7 +224,7 @@ const References = () => {
     
     setFormErrors({});
     setFormSuccess('');
-    setCaptchaError('');
+    // setCaptchaError(''); // Temporalmente desactivado
     
     const errors = validateForm();
     
@@ -232,10 +236,10 @@ const References = () => {
     setFormSubmitting(true);
     
     try {
-      // Enviar datos al backend incluyendo el token del captcha
+      // Enviar datos al backend SIN captchaToken temporalmente
       const payload = {
-        ...formData,
-        captchaToken // El backend debería validar este token
+        ...formData
+        // captchaToken // Temporalmente desactivado
       };
       
       const response = await referenciasApi.createReferencia(payload);
@@ -251,11 +255,11 @@ const References = () => {
           carta: ''
         });
         
-        // Resetear captcha
-        if (captchaRef.current) {
-          captchaRef.current.resetCaptcha();
-        }
-        setCaptchaToken('');
+        // Resetear captcha - TEMPORALMENTE DESACTIVADO
+        // if (captchaRef.current) {
+        //   captchaRef.current.resetCaptcha();
+        // }
+        // setCaptchaToken('');
         
         // Recargar referencias después de 2 segundos
         setTimeout(() => {
@@ -914,30 +918,16 @@ const References = () => {
               </Form.Text>
             </Form.Group>
 
-            {/* Captcha */}
-            <Form.Group className="mb-4">
-              <Form.Label style={{ color: 'var(--teal)', fontWeight: '500' }}>
-                <FaLock className="me-2" />
-                Verificación de Seguridad *
-              </Form.Label>
-              <div className="glass-card p-3 mb-2" style={{ borderRadius: '12px' }}>
-                <HCaptcha
-                  sitekey={window.env?.REACT_APP_HCAPTCHA_SITE_KEY || process.env.REACT_APP_HCAPTCHA_SITE_KEY || "10000000-ffff-ffff-ffff-000000000001"}
-                  onVerify={handleCaptchaVerify}
-                  onExpire={handleCaptchaExpire}
-                  onError={handleCaptchaError}
-                  ref={captchaRef}
-                />
+            {/* Captcha - TEMPORALMENTE DESACTIVADO */}
+            <div className="mb-4 p-3 glass-card" style={{ borderRadius: '12px', backgroundColor: 'rgba(168, 230, 207, 0.2)' }}>
+              <div className="text-center">
+                <FaLock className="text-success mb-2" size={24} />
+                <p className="mb-0" style={{ color: 'var(--teal)' }}>
+                  <strong>Verificación desactivada temporalmente</strong><br/>
+                  <small>Para pruebas. Reactivar hCaptcha en producción.</small>
+                </p>
               </div>
-              {captchaError && (
-                <Alert variant="danger" className="py-2">
-                  {captchaError}
-                </Alert>
-              )}
-              <Form.Text className="text-muted">
-                Esta verificación ayuda a prevenir spam
-              </Form.Text>
-            </Form.Group>
+            </div>
 
             <div className="d-flex justify-content-between mt-4">
               <Button
@@ -952,7 +942,7 @@ const References = () => {
               <Button
                 type="submit"
                 className="btn-frutiger"
-                disabled={formSubmitting || !captchaToken}
+                disabled={formSubmitting}
               >
                 {formSubmitting ? (
                   <>
