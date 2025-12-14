@@ -596,16 +596,6 @@ const Comments = () => {
               </Form.Text>
             </Form.Group>
 
-            {/* Captcha - TEMPORALMENTE DESACTIVADO */}
-            <div className="mb-4 p-3 glass-card" style={{ borderRadius: '12px', backgroundColor: 'rgba(168, 230, 207, 0.2)' }}>
-              <div className="text-center">
-                <FaCheck className="text-success mb-2" size={24} />
-                <p className="mb-0" style={{ color: 'var(--teal)' }}>
-                  <strong>Verificación desactivada temporalmente</strong><br/>
-                  <small>Para pruebas. Reactivar en producción.</small>
-                </p>
-              </div>
-            </div>
 
             <div className="d-flex justify-content-between mt-4">
               <Button
