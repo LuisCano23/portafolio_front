@@ -49,7 +49,7 @@ const ExperienceCard = ({
         }}
       />
       
-      <Card className="glass-card border-0 ms-5" style={{ borderRadius: '20px' }}>
+      <Card className="glass-card border-0 ms-5 experience-card" style={{ borderRadius: '20px' }}>
         <Card.Body className="p-4">
           <div className="d-flex flex-column flex-md-row justify-content-between align-items-start mb-3">
             <div className="mb-3 mb-md-0">

@@ -268,7 +268,7 @@ const Comments = () => {
   }
 
   return (
-    <Container className="py-5 fade-in">
+    <Container className="py-5 fade-in comments-page">
       {/* Header con decoración */}
       <div className="text-center mb-5">
         <div className="d-flex justify-content-center mb-3">
@@ -431,7 +431,7 @@ const Comments = () => {
           {totalPages > 1 && (
             <Card className="glass-card border-0">
               <Card.Body className="p-4">
-                <div className="d-flex justify-content-between align-items-center">
+                <div className="d-flex justify-content-between align-items-center comment-pagination">
                   <div>
                     <p className="mb-0" style={{ color: 'var(--teal)' }}>
                       Página {currentPage} de {totalPages}
@@ -447,7 +447,7 @@ const Comments = () => {
                         color: currentPage === 1 ? '#ccc' : 'var(--teal)'
                       }}
                     >
-                      <FaArrowLeft />
+                      <FaArrowLeft aria-label="Página anterior" />
                     </Pagination.Prev>
                     
                     {renderPaginationButtons()}
@@ -460,7 +460,7 @@ const Comments = () => {
                         color: currentPage === totalPages ? '#ccc' : 'var(--teal)'
                       }}
                     >
-                      <FaArrowRight />
+                      <FaArrowRight aria-label="Página siguiente" />
                     </Pagination.Next>
                   </Pagination>
                 </div>
@@ -513,7 +513,7 @@ const Comments = () => {
             onClick={handleCloseModal}
             style={{ color: 'var(--teal)', fontSize: '1.5rem' }}
           >
-            <FaTimes />
+            <FaTimes aria-label="Cerrar formulario" />
           </Button>
         </Modal.Header>
         <Modal.Body className="p-4" style={{ 

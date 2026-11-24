@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card, Badge } from 'react-bootstrap';
 import {
+  FaCode,
   FaPython,
   FaJs,
   FaReact,
@@ -134,7 +135,7 @@ const Skills = () => {
   ];
 
   return (
-    <Container className="py-5 fade-in">
+    <Container className="py-5 fade-in skills-page">
       {/* Header con decoración */}
       <div className="text-center mb-5">
         <div className="d-flex justify-content-center mb-3">
@@ -182,7 +183,7 @@ const Skills = () => {
                   color: 'white',
                   fontSize: '1.5rem'
                 }}>
-                  
+                  <FaCode />
                 </div>
                 <div>
                   <h2 className="mb-0 fw-bold" style={{ color: 'var(--emerald)' }}>
@@ -195,7 +196,7 @@ const Skills = () => {
               </div>
             </Card.Header>
             <Card.Body className="p-4">
-              <Row className="g-4">
+              <Row className="skills-grid g-0">
                 {technicalSkills.map((skill, index) => (
                   <Col key={index} xs={6} sm={4} md={3} lg={2}>
                     <div className="glass-card p-3 text-center h-100 d-flex flex-column align-items-center justify-content-center"
@@ -273,7 +274,7 @@ const Skills = () => {
               </div>
             </Card.Header>
             <Card.Body className="p-4">
-              <Row className="g-4">
+              <Row className="soft-skills-grid g-0">
                 {softSkills.map((skill, index) => (
                   <Col key={index} xs={12} sm={6} md={4} lg={3}>
                     <div className="glass-card p-4 h-100"

@@ -1,128 +1,51 @@
-import React from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { 
-  FaRocket, 
-  FaBriefcase, 
-  FaPhone, 
-  FaLeaf, 
-  FaWater, 
-  FaCloud, 
-  FaFish,
-  FaTree
-} from 'react-icons/fa';
+import { FaCode, FaShieldAlt, FaLeaf, FaEnvelope, FaBriefcase, FaGraduationCap } from 'react-icons/fa';
 
-const Home = () => {
-  const featureCards = [
-    {
-      icon: <FaRocket />,
-      title: 'Proyectos',
-      description: 'Descubre mis proyectos más recientes y tecnologías utilizadas.',
-      link: '/habilidades',
-      color: 'var(--emerald)'
-    },
-    {
-      icon: <FaBriefcase />,
-      title: 'Experiencia',
-      description: 'Conoce mi trayectoria profesional en el sector tecnológico.',
-      link: '/experiencia',
-      color: 'var(--teal)'
-    },
-    {
-      icon: <FaPhone />,
-      title: 'Contacto',
-      description: 'Ponte en contacto para colaboraciones o oportunidades.',
-      link: '/comentarios',
-      color: 'var(--aqua-green)'
-    }
-  ];
-
-  const natureElements = [
-    <FaLeaf key="leaf" />,
-    <FaWater key="water" />,
-    <FaCloud key="cloud" />,
-    <FaFish key="fish" />,
-    <FaTree key="tree" />
-  ];
-
-  return (
-    <Container className="py-5 fade-in">
-      {/* Hero Section */}
-      <div className="text-center mb-5 py-4">
-        <div className="d-flex justify-content-center mb-3">
-          {natureElements.map((icon, index) => (
-            <div 
-              key={index} 
-              className="mx-2 float-animation"
-              style={{ 
-                animationDelay: `${index * 0.3}s`,
-                fontSize: '2rem',
-                color: 'var(--emerald)',
-                filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))'
-              }}
-            >
-              {icon}
-            </div>
-          ))}
-        </div>
-        <div className="mb-4">
-          <h1 className="display-4 fw-bold mb-3 text-gradient">
-            Mi Portafolio Profesional
-          </h1>
-          <p className="lead fs-4" style={{ 
-            color: 'var(--teal)',
-            textShadow: '0 1px 2px rgba(255,255,255,0.5)'
-          }}>
-            Técnico en informática con mención en ciberseguridad.
-          </p>
+const Home = () => (
+  <div className="home-page fade-in">
+    <section className="home-hero" aria-labelledby="home-title">
+      <div className="hero-copy">
+        <span className="eyebrow"><FaLeaf aria-hidden="true" /> BIENVENIDO A MI MUNDO DIGITAL</span>
+        <h1 id="home-title">Hola, soy<br /><span>Luis Cano.</span></h1>
+        <p className="hero-description">Técnico en informática con mención en ciberseguridad.</p>
+        <p className="hero-intro">Aprender, crear y encontrar nuevas formas de hacer las cosas.</p>
+        <div className="hero-actions">
+          <Link className="btn-frutiger" to="/experiencia"><FaBriefcase aria-hidden="true" /> Mi experiencia</Link>
+          <a className="btn-frutiger-secondary" href="mailto:luis.cano.vic24@gmail.com"><FaEnvelope aria-hidden="true" /> Conversemos</a>
         </div>
       </div>
-
-      {/* About Section */}
-      <Row>
-        <Col lg={8} className="mx-auto w-100">
-          <Card className="glass-card border-0">
-            <Card.Body className="p-5">
-              <h3 className="text-info">Bienvenido/a!</h3>
-              <p className="fs-5">
-                Mi nombre es Luis Cano y soy titulado de la carrera de Técnico en Informática con mención en Ciberseguridad. Durante mi formación y en mis proyectos personales he desarrollado una sólida base en el desarrollo de aplicaciones web, área en la que destaco por mi aprendizaje rápido y mi capacidad para adaptarme a nuevos desafíos.
-                Me considero una persona motivada, proactiva y con muchas ganas de seguir creciendo profesionalmente. Disfruto aprender nuevas tecnologías y trabajar en equipo, manteniendo siempre la responsabilidad y el compromiso como parte fundamental de mi manera de trabajar.
-                Quedo totalmente disponible para ser considerado en cualquier oportunidad laboral donde pueda aportar con mis conocimientos, dedicación y entusiasmo. Si mi perfil es de su interés, los invito cordialmente a ponerse en contacto conmigo.
-                Agradezco de antemano su tiempo y consideración.
-                Este es mi portfolio profesional donde muestro mis habilidades, 
-                proyectos y experiencia en el desarrollo de software con un estilo 
-                <span className="fw-bold" style={{ color: 'var(--emerald)' }}> Frutiger Aero</span>.
-              </p>
-              <p className="text-muted fs-5 mb-4">
-                Utiliza la barra lateral para navegar entre las diferentes secciones.
-              </p>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-
-      {/* Floating Elements */}
-      <div className="position-relative mt-5" style={{ height: '100px' }}>
-        {[...Array(5)].map((_, i) => (
-          <div 
-            key={i}
-            className="position-absolute float-animation"
-            style={{
-              width: `${20 + i * 10}px`,
-              height: `${20 + i * 10}px`,
-              background: 'var(--gradient-aqua)',
-              borderRadius: '50%',
-              left: `${10 + i * 20}%`,
-              top: `${Math.sin(i) * 30}px`,
-              opacity: 0.3,
-              animationDelay: `${i * 0.5}s`,
-              animationDuration: '3s'
-            }}
-          />
-        ))}
+      <div className="hero-art" aria-hidden="true">
+        <div className="orb-shadow" />
+        <div className="aero-orb"><div className="orb-grid" /><FaLeaf className="orb-leaf" /><span className="orb-shine" /></div>
+        <div className="floating-chip chip-code"><span><FaCode /></span>Desarrollo web</div>
+        <div className="floating-chip chip-shield"><span><FaShieldAlt /></span>Ciberseguridad</div>
+        <span className="aero-bubble bubble-one" /><span className="aero-bubble bubble-two" /><span className="aero-bubble bubble-three" />
+        <span className="art-caption">TECNOLOGÍA · CURIOSIDAD · NATURALEZA</span>
       </div>
-    </Container>
-  );
-};
+      <div className="hero-bottom"><span>Mi portafolio profesional</span><span>Un espacio para conocer lo que hago.</span></div>
+    </section>
+    <section className="about-section glass-card" aria-labelledby="about-title">
+      <div className="about-heading">
+        <span className="eyebrow">UN POCO SOBRE MÍ</span>
+        <h2 id="about-title">El entusiasmo de<br /><span>seguir aprendiendo.</span></h2>
+        <div className="about-tags"><span><FaCode aria-hidden="true" /> Desarrollo web</span><span><FaShieldAlt aria-hidden="true" /> Ciberseguridad</span></div>
+      </div>
+      <div className="about-copy">
+        <p>Mi nombre es Luis Cano y soy titulado de la carrera de Técnico en Informática con mención en Ciberseguridad. Durante mi formación y en mis proyectos personales he desarrollado una sólida base en el desarrollo de aplicaciones web, área en la que destaco por mi aprendizaje rápido y mi capacidad para adaptarme a nuevos desafíos.</p>
+        <p>Me considero una persona motivada, proactiva y con muchas ganas de seguir creciendo profesionalmente. Disfruto aprender nuevas tecnologías y trabajar en equipo, manteniendo siempre la responsabilidad y el compromiso como parte fundamental de mi manera de trabajar.</p>
+        <p>Quedo totalmente disponible para ser considerado en cualquier oportunidad laboral donde pueda aportar con mis conocimientos, dedicación y entusiasmo. Si mi perfil es de su interés, los invito cordialmente a ponerse en contacto conmigo.</p>
+        <p className="about-thanks">Gracias por tu tiempo y por visitar mi portafolio.</p>
+      </div>
+    </section>
+    <section className="explore-section" aria-labelledby="explore-title">
+      <div className="section-heading"><div><span className="eyebrow">SIGUE EXPLORANDO</span><h2 id="explore-title">Conoce mi recorrido</h2></div><FaLeaf aria-hidden="true" /></div>
+      <div className="explore-grid">
+        <Link to="/habilidades" className="explore-card glass-card"><span className="feature-icon feature-blue"><FaCode aria-hidden="true" /></span><h3>Mis habilidades</h3><p>Las tecnologías y herramientas con las que trabajo.</p><span className="explore-link">Explorar habilidades</span></Link>
+        <Link to="/experiencia" className="explore-card glass-card"><span className="feature-icon feature-green"><FaBriefcase aria-hidden="true" /></span><h3>Mi experiencia</h3><p>Mi trayectoria profesional y lo que he aprendido.</p><span className="explore-link">Conocer mi experiencia</span></Link>
+        <Link to="/trayectoria" className="explore-card glass-card"><span className="feature-icon feature-aqua"><FaGraduationCap aria-hidden="true" /></span><h3>Mi formación</h3><p>Los pasos que han marcado mi desarrollo académico.</p><span className="explore-link">Ver mi trayectoria</span></Link>
+      </div>
+    </section>
+  </div>
+);
 
 export default Home;

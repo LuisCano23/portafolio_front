@@ -317,7 +317,7 @@ const References = () => {
   const currentReferencia = referencias[currentIndex];
 
   return (
-    <Container className="py-5 fade-in">
+    <Container className="py-5 fade-in references-page">
       {/* Header con decoración y botón para agregar */}
       <div className="text-center mb-5">
         <div className="d-flex justify-content-center mb-3">
@@ -474,7 +474,7 @@ const References = () => {
               position: 'relative'
             }}>
               {/* Contenido de la referencia actual */}
-              <div className="p-5">
+              <div className="p-5 reference-slide">
                 {/* Iconos de comillas decorativos */}
                 <div className="position-absolute" style={{ top: '30px', left: '30px', opacity: 0.1 }}>
                   <FaQuoteLeft size={80} style={{ color: 'var(--emerald)' }} />
@@ -577,7 +577,8 @@ const References = () => {
                   {/* Flecha izquierda */}
                   <Button
                     onClick={handlePrev}
-                    className="position-absolute top-50 start-0 translate-middle-y"
+                    className="position-absolute top-50 start-0 translate-middle-y reference-navigation"
+                    aria-label="Referencia anterior"
                     style={{
                       left: '20px',
                       background: 'var(--gradient-emerald)',
@@ -598,7 +599,8 @@ const References = () => {
                   {/* Flecha derecha */}
                   <Button
                     onClick={handleNext}
-                    className="position-absolute top-50 end-0 translate-middle-y"
+                    className="position-absolute top-50 end-0 translate-middle-y reference-navigation"
+                    aria-label="Referencia siguiente"
                     style={{
                       right: '20px',
                       background: 'var(--gradient-emerald)',

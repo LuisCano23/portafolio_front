@@ -1,57 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import Header from '../header/header';
 import Sidebar from '../sidebar/sidebar';
 import Footer from '../footer/footer';
 
 const Layout = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 992);
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 991px)').matches);
+  const [sidebarOpen, setSidebarOpen] = useState(() => !window.matchMedia('(max-width: 991px)').matches);
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 992) {
-        setSidebarOpen(true);
-      } else {
-        setSidebarOpen(false);
-      }
+    const media = window.matchMedia('(max-width: 991px)');
+    const onChange = (event) => {
+      setIsMobile(event.matches);
+      setSidebarOpen(!event.matches);
     };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    media.addEventListener('change', onChange);
+    return () => media.removeEventListener('change', onChange);
   }, []);
 
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [pathname]);
 
   const closeSidebar = () => {
-    if (window.innerWidth < 992) {
-      setSidebarOpen(false);
-    }
+    if (isMobile) setSidebarOpen(false);
   };
 
   return (
-    <div className="d-flex flex-column min-vh-100">
-      <Header toggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen} />
-      <Sidebar isOpen={sidebarOpen} closeSidebar={closeSidebar} />
-      
-      <main 
-        className="flex-grow-1"
-        style={{ 
-          marginTop: '60px',
-          marginLeft: sidebarOpen && window.innerWidth >= 992 
-            ? (sidebarOpen ? '250px' : '70px')
-            : '0',
-          transition: 'margin-left 0.3s ease'
-        }}
-      >
-        <div className="container-fluid">
-          {/* Outlet renderiza las páginas hijas */}
-          <Outlet />
-        </div>
-      </main>
-      
-      <Footer />
+    <div className={`app-shell ${sidebarOpen ? 'sidebar-expanded' : 'sidebar-collapsed'}`}>
+      <a className="skip-link" href="#contenido">Saltar al contenido</a>
+      <Header toggleSidebar={() => setSidebarOpen((open) => !open)} sidebarOpen={sidebarOpen} />
+      <Sidebar isOpen={sidebarOpen} isMobile={isMobile} closeSidebar={closeSidebar} />
+      <div className="app-content" inert={isMobile && sidebarOpen}>
+        <main id="contenido" className="page-content" tabIndex={-1}><Outlet /></main>
+        <Footer />
+      </div>
     </div>
   );
 };
